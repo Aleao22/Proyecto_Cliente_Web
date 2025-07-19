@@ -1,0 +1,64 @@
+/* styles.css */
+body {
+  margin: 20;
+  font-family: 'Segoe UI', sans-serif;
+  
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #167c77; /* verde reciclaje */
+  padding: 0.8rem 1.5rem;
+  color: white;
+}
+
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.navbar-nav a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  margin: 0 0.7rem;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.nav-item a:hover {
+  opacity: 0.75;
+}
+
+
+.h4  {
+    color: #303030;
+    font-weight: bold;
+}
+.email{
+  color: blueviolet;
+}
+.salir::after {
+  content: " Salir";
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.salir:hover::after {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links a {
+    margin: 0.3rem 0;
+  }
+
+}

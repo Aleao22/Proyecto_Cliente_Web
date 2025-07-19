@@ -1,14 +1,17 @@
 <?php
 session_start();
-if (!isset($_SESSION['id_usuario'])) header('Location: login.php');
-include('db/conexion.php');
+if (!isset($_SESSION['id_usuario'])) header('Location: ../login.php');
+
+include('../conexion.php');
+
 $titulo = 'Dashboard';
-include('includes/header.php');
+include('header.php');
 
 $id = $_SESSION['id_usuario'];
 $res = $conn->query("SELECT nombre, puntos FROM usuarios WHERE id_usuario=$id");
 $user = $res->fetch_assoc();
 ?>
+
 <div class="container mt-4">
   <h1>Bienvenido, <?php echo htmlspecialchars($user['nombre']); ?></h1>
   <p>Tienes <strong><?php echo $user['puntos']; ?></strong> puntos acumulados.</p>
@@ -17,7 +20,7 @@ $user = $res->fetch_assoc();
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">Registrar Material</h5>
-          <a href="registrar_material.php" class="btn btn-primary">Registrar</a>
+          <a href="../registrar_materiales.php" class="btn btn-primary">Registrar</a>
         </div>
       </div>
     </div>
@@ -39,4 +42,4 @@ $user = $res->fetch_assoc();
     </div>
   </div>
 </div>
-<?php include('includes/footer.php'); ?>
+<?php include('footer.php'); ?>
