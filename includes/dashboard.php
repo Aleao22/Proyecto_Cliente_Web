@@ -28,7 +28,9 @@ $user = $res->fetch_assoc();
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">Canjear Recompensas</h5>
-          <a href="canjear.php" class="btn btn-success">Canjear</a>
+          <a href="../canjear.php" class="btn btn-success">Canjear</a>
+ 
+        
         </div>
       </div>
     </div>

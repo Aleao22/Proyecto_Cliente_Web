@@ -50,7 +50,7 @@ CREATE TABLE usuarios (
     contraseña   VARCHAR(255) NOT NULL,       -- guarda HASH, nunca texto plano
     puntos       INT          NOT NULL DEFAULT 0,
     tipo_usuario VARCHAR(20)  NOT NULL DEFAULT 'normal',
-    PRIMARY KEY(id_usuarios)
+    PRIMARY KEY(id_usuario)
 );
 
 /* ------------------------------------------------------------------ */
@@ -65,7 +65,7 @@ CREATE TABLE registro_materiales (
     PRIMARY KEY(id_registro),
     CONSTRAINT fk_registro_usuario
         FOREIGN KEY (usuario_id)
-        REFERENCES usuarios(id_usuarios)
+        REFERENCES usuarios(id_usuario)
         ON DELETE CASCADE,
     CONSTRAINT fk_registro_material
         FOREIGN KEY (material_id)
@@ -78,13 +78,13 @@ CREATE TABLE registro_materiales (
 /* ------------------------------------------------------------------ */
 CREATE TABLE canjes (
     id_canje      INT       NOT NULL AUTO_INCREMENT,
-    id_usuarios   INT       NOT NULL,
+    id_usuario   INT       NOT NULL,
     id_recompensa INT       NOT NULL,
     fecha         DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id_canje),
     CONSTRAINT fk_canje_usuario
-        FOREIGN KEY (id_usuarios)
-        REFERENCES usuarios(id_usuarios)
+        FOREIGN KEY (id_usuario)
+        REFERENCES usuarios (id_usuario)
         ON DELETE CASCADE,
     CONSTRAINT fk_canje_recompensa
         FOREIGN KEY (id_recompensa)
@@ -129,9 +129,9 @@ CREATE TABLE faq (
 /* ------------------------------------------------------------------ */
 /* 8) Índices auxiliares (rendimiento de búsquedas frecuentes)        */
 /* ------------------------------------------------------------------ */
-CREATE INDEX idx_registro_usuario_fecha  ON registro_materiales (usuario_id , fecha);
+CREATE INDEX idx_registro_usuario_fecha  ON registro_materiales (id_usuario , fecha);
 CREATE INDEX idx_registro_material_fecha ON registro_materiales (material_id, fecha);
-CREATE INDEX idx_canjes_usuario_fecha    ON canjes             (id_usuarios, fecha);
+CREATE INDEX idx_canjes_usuario_fecha    ON canjes             (id_usuario, fecha);
 
 --Insert de las tablas 
 INSERT INTO tipo_material (nombre) VALUES 
@@ -161,3 +161,14 @@ INSERT INTO ubicaciones (nombre, direccion, direccion_axacta, telefono) VALUES
 INSERT INTO faq (pregunta, respuesta) VALUES
 ('¿Cómo obtengo puntos?', 'Reciclando materiales en las sedes registradas.'),
 ('¿Qué puedo canjear con mis puntos?', 'Recompensas como botellas ecológicas, descuentos y entradas a eventos.');
+
+
+INSERT INTO recompensa (nombre, descripcion, puntos_asignados, imagen_url) VALUES
+('Botella ecológica', 'Botella reutilizable para agua (750ml).', 100, 'https://ejemplo.com/imagenes/botella.png'),
+('Descuento del 15%', 'Canjea este cupón para obtener un 15% de descuento en tiendas asociadas.', 150, 'https://ejemplo.com/imagenes/descuento.png'),
+('Camisa reciclada', 'Camiseta hecha con materiales reciclados. Talla única.', 200, 'https://ejemplo.com/imagenes/camisa.png'),
+('Entrada a cine', 'Una entrada válida para cines nacionales.', 250, 'https://ejemplo.com/imagenes/cine.png'),
+('Tarjeta de regalo ₡5000', 'Para usar en supermercados o tiendas de conveniencia.', 300, 'https://ejemplo.com/imagenes/tarjeta.png');
+
+
+INSERT INTO canjes (id_usuario, id_recompensa) VALUES (1, 3);
