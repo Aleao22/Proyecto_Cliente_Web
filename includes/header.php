@@ -45,7 +45,7 @@
             <li class="nav-item"><a class="nav-link smooth-scroll" href="/Sistema de Canje de Recompensas de Reciclaje/Proyecto_Cliente_Web/includes/Dashboard.php">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link smooth-scroll" href="/Sistema de Canje de Recompensas de Reciclaje/Proyecto_Cliente_Web/canjear.php">Canjear</a></li>
             <li class="nav-item"><a class="nav-link smooth-scroll" href="/Sistema de Canje de Recompensas de Reciclaje/Proyecto_Cliente_Web/ubicaciones.php">Sedes</a></li>
-            <a href="/Sistema%20de%20Canje%20de%20Recompensas%20de%20Reciclaje/Proyecto_Cliente_Web/recompensa.php">Recompensas</a>
+            <li class="nav-item"><a class="nav-link smooth-scroll" href="/Sistema de Canje de Recompensas de Reciclaje/Proyecto_Cliente_Web/recompensa.php">Recompensas</a></li>
 
 
 
