@@ -1,10 +1,13 @@
-<?php include("db/conexion.php"); session_start(); ?>
+<?php include("conexion.php"); session_start(); 
+if (!isset($_SESSION['id_usuario'])) header('Location: login.php');?>
 <!DOCTYPE html>
 <html>
+    <?php include('includes/header.php');?>
 <head><title>Canje de Recompensas</title></head>
 <body>
-<h2>Canjear Recompensas</h2>
-<table border="1">
+    
+<h2 class="m-4">Canjear Recompensas</h2>
+<table class="table m-4">
 <tr><th>Nombre</th><th>Descripción</th><th>Puntos</th><th>Acción</th></tr>
 <?php
 $id_usuario = $_SESSION['id_usuario'];
@@ -36,6 +39,7 @@ if (isset($_POST['canjear'])) {
     $conn->query("UPDATE usuarios SET puntos = puntos - (SELECT puntos_asignados FROM recompensa WHERE id_recompensa = $recompensa_id) WHERE id_usuario = $id_usuario");
     echo "<p>¡Canje exitoso!</p>";
 }
+include('includes/footer.php');
 ?>
 </body>
 </html>
